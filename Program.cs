@@ -7,7 +7,6 @@ namespace NeuralClassification
 {
     class NeuralClassificationProgram
     {
-        static Random rnd = null;
 
         static void Main(string[] args)
         {
@@ -15,19 +14,12 @@ namespace NeuralClassification
             {
 
                 Console.WriteLine("\nBegin neural network classification demo\n");
-                Console.WriteLine("Goal is to predict/classify color based on four numeric inputs\n");
-                rnd = new Random(159); // 159 makes 'good' output
-
-                Console.WriteLine("Creating 100 lines of raw data");
-                string dataFile = "..\\..\\colors.txt";
-                MakeData(dataFile, 1000);
-
-                Console.WriteLine("\nFirst few rows of raw data file are:");
-                Helpers.ShowTextFile(dataFile, 5);
+                Console.WriteLine("Goal is to predict result of game");
 
                 double[][] trainMatrix = null;
                 double[][] testMatrix = null;
                 Console.WriteLine("\nGenerating train and test matrices using an 80%-20% split");
+                string dataFile = @"C:\Users\theok\Documents\Projects\NN\NN\nninput.txt";
                 MakeTrainAndTest(dataFile, out trainMatrix, out testMatrix);
 
                 Console.WriteLine("\nFirst few rows of training matrix are:");
@@ -60,106 +52,106 @@ namespace NeuralClassification
 
         // --------------------------------------------------------------------------------------------
 
-        static void MakeData(string dataFile, int numLines)
-        {
-            //double[] weights = new double[] { -0.1, 0.2, -0.3, 0.4, -0.5,
-            //                            0.6, -0.7, 0.8, -0.9, 1.0,
-            //                            -1.1, 1.2, -1.3, 1.4, -1.5,
-            //                            1.6, -1.7, 1.8, -1.9, 2.0,
-            //                            -0.5, 0.6, -0.7, 0.8, -0.9,
-            //                            1.5, -1.4, 1.3,
-            //                            -1.2, 1.1, -1.0,
-            //                            0.9, -0.8, 0.7,
-            //                            -0.6, 0.5, -0.4,
-            //                            0.3, -0.2, 0.1,
-            //                            0.1, -0.3, 0.6 };
+        //static void MakeData(string dataFile, int numLines)
+        //{
+        //    //double[] weights = new double[] { -0.1, 0.2, -0.3, 0.4, -0.5,
+        //    //                            0.6, -0.7, 0.8, -0.9, 1.0,
+        //    //                            -1.1, 1.2, -1.3, 1.4, -1.5,
+        //    //                            1.6, -1.7, 1.8, -1.9, 2.0,
+        //    //                            -0.5, 0.6, -0.7, 0.8, -0.9,
+        //    //                            1.5, -1.4, 1.3,
+        //    //                            -1.2, 1.1, -1.0,
+        //    //                            0.9, -0.8, 0.7,
+        //    //                            -0.6, 0.5, -0.4,
+        //    //                            0.3, -0.2, 0.1,
+        //    //                            0.1, -0.3, 0.6 };
 
-            #region define weights and biases
-            List<double> weightsAndBiases = new List<double>();
-            #region input to hidden weights
-            weightsAndBiases.Add(-0.1);
-            weightsAndBiases.Add(0.2);
-            weightsAndBiases.Add(-0.3);
-            weightsAndBiases.Add(0.4);
-            weightsAndBiases.Add(-0.5);
-            weightsAndBiases.Add(0.6);
-            weightsAndBiases.Add(-0.7);
-            weightsAndBiases.Add(0.8);
-            weightsAndBiases.Add(-0.9);
-            weightsAndBiases.Add(1.0);
-            weightsAndBiases.Add(-1.1);
-            weightsAndBiases.Add(1.2);
-            weightsAndBiases.Add(-1.3);
-            weightsAndBiases.Add(1.4);
-            weightsAndBiases.Add(-1.5);
-            weightsAndBiases.Add(1.6);
-            weightsAndBiases.Add(-1.7);
-            weightsAndBiases.Add(1.8);
-            weightsAndBiases.Add(-1.9);
-            weightsAndBiases.Add(2.0);
-            #endregion
-            #region input to hidden biases
-            weightsAndBiases.Add(-0.5);
-            weightsAndBiases.Add(0.6);
-            weightsAndBiases.Add(-0.7);
-            weightsAndBiases.Add(0.8);
-            weightsAndBiases.Add(-0.9);
-            #endregion
-            #region hidden to output weights
-            weightsAndBiases.Add(1.5);
-            weightsAndBiases.Add(-1.4);
-            weightsAndBiases.Add(1.3);
-            weightsAndBiases.Add(-1.2);
-            weightsAndBiases.Add(1.1);
-            weightsAndBiases.Add(-1.0);
-            weightsAndBiases.Add(0.9);
-            weightsAndBiases.Add(-0.8);
-            weightsAndBiases.Add(0.7);
-            weightsAndBiases.Add(-0.6);
-            weightsAndBiases.Add(0.5);
-            weightsAndBiases.Add(-0.4);
-            weightsAndBiases.Add(0.3);
-            weightsAndBiases.Add(-0.2);
-            weightsAndBiases.Add(0.1);
-            #endregion
-            #region hidden to output biases
-            weightsAndBiases.Add(0.1);
-            weightsAndBiases.Add(-0.3);
-            weightsAndBiases.Add(0.6);
-            #endregion
-            #endregion
-            double[] weights = weightsAndBiases.ToArray();
+        //    #region define weights and biases
+        //    List<double> weightsAndBiases = new List<double>();
+        //    #region input to hidden weights
+        //    weightsAndBiases.Add(-0.1);
+        //    weightsAndBiases.Add(0.2);
+        //    weightsAndBiases.Add(-0.3);
+        //    weightsAndBiases.Add(0.4);
+        //    weightsAndBiases.Add(-0.5);
+        //    weightsAndBiases.Add(0.6);
+        //    weightsAndBiases.Add(-0.7);
+        //    weightsAndBiases.Add(0.8);
+        //    weightsAndBiases.Add(-0.9);
+        //    weightsAndBiases.Add(1.0);
+        //    weightsAndBiases.Add(-1.1);
+        //    weightsAndBiases.Add(1.2);
+        //    weightsAndBiases.Add(-1.3);
+        //    weightsAndBiases.Add(1.4);
+        //    weightsAndBiases.Add(-1.5);
+        //    weightsAndBiases.Add(1.6);
+        //    weightsAndBiases.Add(-1.7);
+        //    weightsAndBiases.Add(1.8);
+        //    weightsAndBiases.Add(-1.9);
+        //    weightsAndBiases.Add(2.0);
+        //    #endregion
+        //    #region input to hidden biases
+        //    weightsAndBiases.Add(-0.5);
+        //    weightsAndBiases.Add(0.6);
+        //    weightsAndBiases.Add(-0.7);
+        //    weightsAndBiases.Add(0.8);
+        //    weightsAndBiases.Add(-0.9);
+        //    #endregion
+        //    #region hidden to output weights
+        //    weightsAndBiases.Add(1.5);
+        //    weightsAndBiases.Add(-1.4);
+        //    weightsAndBiases.Add(1.3);
+        //    weightsAndBiases.Add(-1.2);
+        //    weightsAndBiases.Add(1.1);
+        //    weightsAndBiases.Add(-1.0);
+        //    weightsAndBiases.Add(0.9);
+        //    weightsAndBiases.Add(-0.8);
+        //    weightsAndBiases.Add(0.7);
+        //    weightsAndBiases.Add(-0.6);
+        //    weightsAndBiases.Add(0.5);
+        //    weightsAndBiases.Add(-0.4);
+        //    weightsAndBiases.Add(0.3);
+        //    weightsAndBiases.Add(-0.2);
+        //    weightsAndBiases.Add(0.1);
+        //    #endregion
+        //    #region hidden to output biases
+        //    weightsAndBiases.Add(0.1);
+        //    weightsAndBiases.Add(-0.3);
+        //    weightsAndBiases.Add(0.6);
+        //    #endregion
+        //    #endregion
+        //    double[] weights = weightsAndBiases.ToArray();
 
 
 
-            //double[] weights = new double[43];
+        //    //double[] weights = new double[43];
 
-            NeuralNetwork nn = new NeuralNetwork(Configuration.howManyInputNeurons, Configuration.howManyHiddenNeurons, Configuration.howManyOutputNeurons);
-            //nn.SetWeights(weights);
-            nn.InitializeWeights();
+        //    NeuralNetwork nn = new NeuralNetwork(Configuration.howManyInputNeurons, Configuration.howManyHiddenNeurons, Configuration.howManyOutputNeurons);
+        //    //nn.SetWeights(weights);
+        //    nn.InitializeWeights();
 
-            FileStream ofs = new FileStream(dataFile, FileMode.Create);
-            StreamWriter sw = new StreamWriter(ofs);
+        //    FileStream ofs = new FileStream(dataFile, FileMode.Create);
+        //    StreamWriter sw = new StreamWriter(ofs);
 
-            for (int i = 0; i < numLines; ++i)
-            {
-                double[] inputs = new double[Configuration.howManyInputNeurons];
-                for (int j = 0; j < inputs.Length; ++j)
-                    inputs[j] = rnd.Next(1, 10);
+        //    for (int i = 0; i < numLines; ++i)
+        //    {
+        //        double[] inputs = new double[Configuration.howManyInputNeurons];
+        //        for (int j = 0; j < inputs.Length; ++j)
+        //            inputs[j] = rnd.Next(1, 10);
 
-                double[] outputs = nn.ComputeOutputs(inputs);
+        //        double[] outputs = nn.ComputeOutputs(inputs);
 
-                string color = "";
-                int idx = Helpers.IndexOfLargest(outputs);
-                if (idx == 0) { color = "red"; }
-                else if (idx == 1) { color = "green"; }
-                else if (idx == 2) { color = "blue"; }
+        //        string color = "";
+        //        int idx = Helpers.IndexOfLargest(outputs);
+        //        if (idx == 0) { color = "red"; }
+        //        else if (idx == 1) { color = "green"; }
+        //        else if (idx == 2) { color = "blue"; }
 
-                sw.WriteLine(string.Join(" ", new List<double>(inputs).Select(item => item.ToString("F1")).ToArray()) + " " + color);
-            }
-            sw.Close(); ofs.Close();
+        //        sw.WriteLine(string.Join(" ", new List<double>(inputs).Select(item => item.ToString("F1")).ToArray()) + " " + color);
+        //    }
+        //    sw.Close(); ofs.Close();
 
-        } // MakeData
+        //} // MakeData
 
         static void MakeTrainAndTest(string file, out double[][] trainMatrix, out double[][] testMatrix)
         {
@@ -187,7 +179,7 @@ namespace NeuralClassification
 
             while ((line = sr.ReadLine()) != null)
             {
-                tokens = line.Split(' ');
+                tokens = line.Split('\t');
 
                 for(int i=0;i<Configuration.howManyInputNeurons; i++)
                 {
@@ -199,9 +191,9 @@ namespace NeuralClassification
                 int indexOfSecondEncodedOutputValue = Configuration.howManyInputNeurons + 1;
                 int indexOfThirdEncodedOutputValue = Configuration.howManyInputNeurons + 2;
 
-                if (tokens[Configuration.howManyInputNeurons] == "red") { allData[row][indexOfFirstEncodedOutputValue] = 1.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
-                else if (tokens[Configuration.howManyInputNeurons] == "green") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 1.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
-                else if (tokens[Configuration.howManyInputNeurons] == "blue") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 1.0; }
+                if (tokens[Configuration.howManyInputNeurons] == "win") { allData[row][indexOfFirstEncodedOutputValue] = 1.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
+                else if (tokens[Configuration.howManyInputNeurons] == "draw") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 1.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
+                else if (tokens[Configuration.howManyInputNeurons] == "loss") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 1.0; }
                 ++row;
             }
             sr.Close(); ifs.Close();
