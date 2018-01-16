@@ -12,15 +12,8 @@ namespace NeuralClassification
         public static int howManyHiddenNeurons = 5;
         public static int howManyOutputNeurons = 3;
 
+        public static int PSO_howManyParticles=10;
+        public static int PSO_howManyIterations = 1000;
 
-        public static int GetNumberOfWeightsAndBiases()
-        {
-            int result = 0;
-            int howManyWeights = howManyInputNeurons * howManyHiddenNeurons + howManyHiddenNeurons * howManyOutputNeurons;
-            int howManyBiases = howManyHiddenNeurons + howManyOutputNeurons;
-            result = howManyWeights + howManyBiases;
-
-            return result;
-        }
     }
 }

@@ -67,7 +67,7 @@ namespace NeuralClassification
                 for (int j = 0; j < matrix[0].Length; ++j)
                 {
                     if (matrix[i][j] >= 0.0) Console.Write(" ");
-                    if (j == 4) Console.Write("-> ");
+                    if (j == Configuration.howManyInputNeurons) Console.Write("-> ");
                     Console.Write(matrix[i][j].ToString("F2") + " ");
                 }
                 Console.WriteLine("");

@@ -204,8 +204,8 @@ namespace NeuralClassification
             //double[] currWeights = new double[numWeights];
 
             // use PSO to seek best weights
-            int numberParticles = 10;
-            int numberIterations = 5000;
+            int numberParticles = Configuration.PSO_howManyParticles;
+            int numberIterations = Configuration.PSO_howManyIterations;
             int iteration = 0;
             int Dim = numWeights; // number of values to solve for
             double minX = -5.0; // for each weight
@@ -256,6 +256,12 @@ namespace NeuralClassification
             while (iteration < numberIterations)
             {
                 ++iteration;
+
+                if (iteration % 10==0)
+                {
+                    Console.WriteLine($"{iteration}/{Configuration.PSO_howManyIterations}");
+                }
+
                 double[] newVelocity = new double[Dim];
                 double[] newPosition = new double[Dim];
                 double newFitness;
@@ -368,21 +374,21 @@ namespace NeuralClassification
                 // use winner-takes all -- highest prob of the prediction
                 int indexOfLargest = Helpers.IndexOfLargest(currPredicted);
 
-                if (i <= 3) // just a few for demo purposes
+                if (i <= 20) // just a few for demo purposes
                 {
                     Console.WriteLine("-----------------------------------");
                     Console.Write("Input:     ");
                     Helpers.ShowVector(currInputs, 2, true);
                     Console.Write("Output:    ");
                     Helpers.ShowVector(currOutputs, 1, false);
-                    if (currOutputs[0] == 1.0) Console.WriteLine(" (red)");
-                    else if (currOutputs[1] == 1.0) Console.WriteLine(" (green)");
-                    else Console.WriteLine(" (blue)");
+                    if (currOutputs[0] == 1.0) Console.WriteLine(" (homewin)");
+                    else if (currOutputs[1] == 1.0) Console.WriteLine(" (draw)");
+                    else Console.WriteLine(" (homeloss)");
                     Console.Write("Predicted: ");
                     Helpers.ShowVector(currPredicted, 1, false);
-                    if (indexOfLargest == 0) Console.WriteLine(" (red)");
-                    else if (indexOfLargest == 1) Console.WriteLine(" (green)");
-                    else Console.WriteLine(" (blue)");
+                    if (indexOfLargest == 0) Console.WriteLine(" (homewin)");
+                    else if (indexOfLargest == 1) Console.WriteLine(" (draw)");
+                    else Console.WriteLine(" (homeloss)");
 
                     if (currOutputs[indexOfLargest] == 1)
                         Console.WriteLine("correct");

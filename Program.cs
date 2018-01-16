@@ -191,9 +191,9 @@ namespace NeuralClassification
                 int indexOfSecondEncodedOutputValue = Configuration.howManyInputNeurons + 1;
                 int indexOfThirdEncodedOutputValue = Configuration.howManyInputNeurons + 2;
 
-                if (tokens[Configuration.howManyInputNeurons] == "win") { allData[row][indexOfFirstEncodedOutputValue] = 1.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
-                else if (tokens[Configuration.howManyInputNeurons] == "draw") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 1.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
-                else if (tokens[Configuration.howManyInputNeurons] == "loss") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 1.0; }
+                if (tokens[tokens.Length - 1] == "homewin") { allData[row][indexOfFirstEncodedOutputValue] = 1.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
+                else if (tokens[tokens.Length - 1] == "draw") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 1.0; allData[row][indexOfThirdEncodedOutputValue] = 0.0; }
+                else if (tokens[tokens.Length - 1] == "homeloss") { allData[row][indexOfFirstEncodedOutputValue] = 0.0; allData[row][indexOfSecondEncodedOutputValue] = 0.0; allData[row][indexOfThirdEncodedOutputValue] = 1.0; }
                 ++row;
             }
             sr.Close(); ifs.Close();
